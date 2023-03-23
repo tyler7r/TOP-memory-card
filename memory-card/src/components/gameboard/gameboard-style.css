@@ -1,0 +1,12 @@
+img {
+    height: 120px;
+}
+
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.hidden {
+    display: none;
+}
