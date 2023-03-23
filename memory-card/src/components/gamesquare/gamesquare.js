@@ -12,6 +12,7 @@ export default function Gamesquare(props) {
     }
 
     const clickPlayer = (e) => {
+        console.log(e);
         let copy = [...cast];
         const selectedPlayer = copy.findIndex(obj => {
             return obj.name === e.target.id;
@@ -27,5 +28,10 @@ export default function Gamesquare(props) {
         props.randomize();
     }
 
-    return <img src={require(`../players/images/${props.name}.jpg`)} alt={props.name} onClick={clickPlayer} id={props.name}/>
+    return (
+        <div className={props.tribe} onClick={clickPlayer} id={props.name}>
+            <div id={props.name} className='playerName'>{props.name}</div>
+            <img src={require(`../players/images/${props.name}.jpg`)} alt={props.name} id={props.name}/>
+        </div>
+    )
 }

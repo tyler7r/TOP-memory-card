@@ -7,6 +7,23 @@ img {
     grid-template-columns: repeat(6, 1fr);
 }
 
+.gamesquare {
+    
+}
+
 .hidden {
     display: none;
 }
+
+.Soka {
+    background-color: green;
+}
+
+.Tika {
+    background-color: purple;
+}
+
+.Ratu {
+    background-color: orange;
+}
+
