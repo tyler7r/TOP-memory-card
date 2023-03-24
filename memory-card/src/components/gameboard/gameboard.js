@@ -19,12 +19,10 @@ export default function Gameboard(props) {
     }
 
     return (
-        <div className='gameboard'>
-            {board.map((square) => {
+            board.map((square) => {
                 return (
                     <Gamesquare key={square.name} cast={props.cast} tribe={square.tribe} randomize={randomizeBoard} reset={props.reset} players={props.players} score={props.score} name={square.name}/>
                 )
-            })}
-        </div>
+            })
     )
 }
