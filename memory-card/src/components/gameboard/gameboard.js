@@ -18,12 +18,6 @@ export default function Gameboard(props) {
         newArray = [];
     }
 
-    // const setRandomBoard = () => {
-    //     randomizeBoard();
-    //     setBoard(newArray);
-    //     newArray=[];
-    // }
-
     return (
         <div className='gameboard'>
             {board.map((square) => {
