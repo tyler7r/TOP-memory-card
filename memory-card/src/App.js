@@ -56,6 +56,7 @@ function App() {
     }
     setLevel('easy')
     let buttons = document.querySelector('.levelChoice');
+    document.querySelector('#gameDescription').classList.add('hidden');
     buttons.classList.add('hidden');
   }
 
@@ -67,6 +68,7 @@ function App() {
     }
     randomizeBoard(mediumBoard);
     setLevel('medium');
+    document.querySelector('#gameDescription').classList.add('hidden');
     let buttons = document.querySelector('.levelChoice');
     buttons.classList.add('hidden');
   }
@@ -74,6 +76,7 @@ function App() {
   const hard = () => {
     randomizeBoard(cast);
     setLevel('hard');
+    document.querySelector('#gameDescription').classList.add('hidden');
     let buttons = document.querySelector('.levelChoice');
     buttons.classList.add('hidden');
   }
@@ -89,6 +92,10 @@ function App() {
 
   const levelHover = (e) => {
     document.querySelector(`#${e.target.id}Description`).classList.toggle('hidden');
+  }
+
+  const questionHover = (e) => {
+    document.querySelector('#gameDescription').classList.toggle('hidden');
   }
 
   if (level === 'none') {
@@ -117,6 +124,10 @@ function App() {
             </div>
           </div>
         </div>
+        <div className='gameDescription'>
+          <div className='hidden' id='gameDescription'>The goal is to click on every player without repeating</div>
+          <div id='questionMark' onMouseEnter={questionHover} onMouseLeave={questionHover}>?</div>
+        </div>
       </div>
     )
   }
@@ -138,6 +149,10 @@ function App() {
       <div className='currentLevel'>Current Level: {level.toUpperCase()}</div>
       <div className={['gameboard', level].join(' ')}>
         <Gameboard players={players} cast={cast} randomize={randomizeBoard} reset={resetScore} score={incrementScore} />
+      </div>
+      <div className='gameDescription'>
+        <div className='hidden' id='gameDescription'>The goal is to click on every player without repeating</div>
+        <div id='questionMark' onMouseEnter={questionHover} onMouseLeave={questionHover}>?</div>
       </div>
     </div>
   );
