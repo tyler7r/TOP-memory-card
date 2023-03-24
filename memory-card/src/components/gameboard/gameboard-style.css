@@ -1,14 +1,40 @@
 img {
     height: 120px;
+    border: 1px solid gray;
+    box-shadow: 0.5px 0.5px 200px white;
 }
 
 .gameboard {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    width: 100vw;
+    height: 100vh;
 }
 
 .gamesquare {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: lightgray;
+    border: 1px solid gray;
+    gap: 4px;
+    box-shadow: 1px 1px 20px rgb(153, 101, 101, 0.4);
+}
+
+.easy {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.medium {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.hard {
+    grid-template-columns: repeat(6, 1fr);
 }
 
 .hidden {
@@ -16,14 +42,17 @@ img {
 }
 
 .Soka {
-    background-color: green;
+    border: 2px solid green;
+    color: green;
 }
 
 .Tika {
-    background-color: purple;
+    border: 2px solid purple;
+    color: purple;
 }
 
 .Ratu {
-    background-color: orange;
+    border: 2px solid orange;
+    color: orange;
 }
 

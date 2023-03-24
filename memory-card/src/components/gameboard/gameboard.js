@@ -4,7 +4,6 @@ import './gameboard-style.css'
 
 export default function Gameboard(props) {
     const [board, setBoard] = useState(props.players);
-    console.log(board);
 
     let newArray = [];
 
@@ -15,19 +14,21 @@ export default function Gameboard(props) {
             newArray.push(copy[index]);
             copy.splice(index, 1);
         }
+        setBoard(newArray);
+        newArray = [];
     }
 
-    const setRandomBoard = () => {
-        randomizeBoard();
-        setBoard(newArray);
-        newArray=[];
-    }
+    // const setRandomBoard = () => {
+    //     randomizeBoard();
+    //     setBoard(newArray);
+    //     newArray=[];
+    // }
 
     return (
         <div className='gameboard'>
             {board.map((square) => {
                 return (
-                    <Gamesquare key={square.name} tribe={square.tribe} randomize={setRandomBoard} reset={props.reset} players={props.players} score={props.score} img={square.imgFile} name={square.name}/>
+                    <Gamesquare key={square.name} cast={props.cast} tribe={square.tribe} randomize={randomizeBoard} reset={props.reset} players={props.players} score={props.score} name={square.name}/>
                 )
             })}
         </div>

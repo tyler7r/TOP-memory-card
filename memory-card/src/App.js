@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Gameboard from './components/gameboard/gameboard';
-import { cast } from './components/players/players.js'
+import { cast } from './components/players/players.js';
 
 function App() {
-  const [players, setPlayers] = useState([])
+  const [players, setPlayers] = useState(cast)
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [level, setLevel] = useState('none');
+
+  let randomizedArray = [];
+
+  const randomizeBoard = (array) => {
+    let copy = [...array];
+    for (let i = 0; i < array.length; i++) {
+      let index = Math.floor(Math.random() * copy.length);
+      randomizedArray.push(copy[index]);
+      copy.splice(index, 1);
+    }
+    setPlayers(randomizedArray);
+    randomizedArray = [];
+  }
 
   const incrementScore = () => {
     setScore(score + 1);
@@ -27,37 +40,36 @@ function App() {
     const tika = cast.filter(player => player.tribe === 'Tika');
     const ratu = cast.filter(player => player.tribe === 'Ratu');
     if (tribeChoice === 'Soka') {
-      setPlayers(soka)
+      randomizeBoard(soka)
     } else if (tribeChoice === 'Tika') {
-      setPlayers(tika);
+      randomizeBoard(tika);
     } else if (tribeChoice === 'Ratu') {
-      setPlayers(ratu);
+      randomizeBoard(ratu);
     }
     setLevel('easy');
     let buttons = document.querySelector('.levelChoice');
     buttons.classList.add('hidden');
-    // document.querySelector('.gameboard').classList.remove('hidden')
   }
 
   const medium = () => {
     const activePlayers = cast.filter(player => player.status === 'in');
-    setPlayers(activePlayers);
+    randomizeBoard(activePlayers);
     setLevel('medium');
     let buttons = document.querySelector('.levelChoice');
     buttons.classList.add('hidden');
-    // document.querySelector('.gameboard').classList.remove('hidden')
   }
 
   const hard = () => {
-    setPlayers(cast);
+    randomizeBoard(cast);
     setLevel('hard');
     let buttons = document.querySelector('.levelChoice');
     buttons.classList.add('hidden');
-    // document.querySelector('.gameboard').classList.remove('hidden')
   }
 
   const changeLevel = () => {
     setLevel('none');
+    setScore(0);
+    setBestScore(0);
     let buttons = document.querySelector('.levelChoice');
     buttons.classList.remove('hidden');
   }
@@ -89,7 +101,7 @@ function App() {
         <button id='medium' onClick={medium}>Medium</button>
         <button id='hard' onClick={hard}>Hard</button>
       </div>
-      <Gameboard players={players} reset={resetScore} score={incrementScore} />
+      <Gameboard players={players} cast={cast} randomize={randomizeBoard} reset={resetScore} score={incrementScore} />
       <button id='newLevel' onClick={changeLevel}>Change Level</button>
     </div>
   );

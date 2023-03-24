@@ -12,12 +12,10 @@ export default function Gamesquare(props) {
     }
 
     const clickPlayer = (e) => {
-        console.log(e);
-        let copy = [...cast];
+        let copy = [...props.cast];
         const selectedPlayer = copy.findIndex(obj => {
             return obj.name === e.target.id;
         })
-        console.log(copy[selectedPlayer]);
         if (copy[selectedPlayer].clicked === true) {
             resetClickStatus();
             props.reset();
@@ -29,7 +27,7 @@ export default function Gamesquare(props) {
     }
 
     return (
-        <div className={props.tribe} onClick={clickPlayer} id={props.name}>
+        <div className={[props.tribe, 'gamesquare'].join(' ')} onClick={clickPlayer} id={props.name}>
             <div id={props.name} className='playerName'>{props.name}</div>
             <img src={require(`../players/images/${props.name}.jpg`)} alt={props.name} id={props.name}/>
         </div>
